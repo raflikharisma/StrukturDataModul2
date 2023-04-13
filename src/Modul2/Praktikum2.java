@@ -1,16 +1,15 @@
 package Modul2;
 
 public class Praktikum2 {
-
+// references object
     static class Node{
         int data;
         Node next;
-
+// constructor to set the data and iniatialized
         public Node(int data){
             this.data = data;
             this.next = null;
         }
-
     }
 
     public Node head = null;
@@ -18,14 +17,14 @@ public class Praktikum2 {
 
     public void addNode(int data){
 
-        Node newNode = new Node(data);
+        Node node = new Node(data);
 
         if (head == null){
-            head = newNode;
-            tail = newNode;
+            head = node; // making first node become head and tail
+            tail = node;
         }else{
-            tail.next = newNode;
-            tail = newNode;
+            tail.next = node; //
+            tail = node;
         }
 
     }
