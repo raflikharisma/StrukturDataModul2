@@ -1,6 +1,6 @@
 package Modul2;
 
-public class Praktikum2 {
+public class Praktikum2  {
 // references object
     static class Node{
         int data;
