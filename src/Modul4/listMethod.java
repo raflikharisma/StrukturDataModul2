@@ -1,6 +1,7 @@
 package Modul4;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,14 +9,16 @@ import java.util.Scanner;
 class listMethod {
     static Scanner userInput2nd = new Scanner(System.in);
     HashMap<String, String> dataPraktikan = new HashMap<>();
+    ArrayList<String> tempAst = new ArrayList<>();
 
     public boolean checkEmail(String tempEmail) {
-        return  tempEmail.endsWith("@webmail.umm.ac.id");
+        return tempEmail.endsWith("@webmail.umm.ac.id");
     }
 
-    public boolean checkPassword(String tempPassword){
+    public boolean checkPassword(String tempPassword) {
         return tempPassword.length() >= 8;
     }
+
     public boolean checkNim(String nimPraktikan) {
         return nimPraktikan.startsWith("IF") && nimPraktikan.substring(3).matches("^[0-9]+$") && nimPraktikan.length() == 17;
     }
@@ -24,8 +27,8 @@ class listMethod {
         return namaPraktikan.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
     }
 
-    public void tambahData(String nimPraktikan, String namaPraktikan) {
-        dataPraktikan.put(nimPraktikan, namaPraktikan);
+    public boolean tambahData(String nimPraktikan, String namaPraktikan) {
+       return dataPraktikan.putIfAbsent(nimPraktikan, namaPraktikan) == null;
     }
 
     public void showData() {
@@ -42,12 +45,13 @@ class listMethod {
         if (dataPraktikan.isEmpty()) {
             System.out.println("Data kosong");
         } else {
-            int j = 1;
             System.out.println("Nama-nama Asisten : ");
             for (String i : dataPraktikan.values()) {
-                System.out.println(j + ", " + i);
-                j++;
+                if (!tempAst.contains(i)) {
+                    tempAst.add(i);
+                }
             }
+            System.out.println(tempAst);
         }
 
     }
@@ -85,9 +89,9 @@ class listMethod {
     public void searchDataByName(String namaAsisten) {
         System.out.println("Berikut List NIM Praktikan : ");
         int num = 1;
-        for (Map.Entry<String, String> search : dataPraktikan.entrySet()) {
-            String tempKey = search.getKey();
-            String tempValue = search.getValue();
+        for (Map.Entry<String, String> fromHash : dataPraktikan.entrySet()) {
+            String tempKey = fromHash.getKey();
+            String tempValue = fromHash.getValue();
 
             if (tempValue.equals(namaAsisten)) {
                 System.out.println(num + ". " + tempKey);

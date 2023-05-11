@@ -34,10 +34,11 @@ public class DataPraktikan {
                     tempNim = userInput.nextLine();
                     if (!objectList.checkNim(tempNim)) {
                         System.out.println("Syarat tidak terpenuhi");
-                    } else {
+                    } else{
                         break;
                     }
                 }
+
                 while (true) {
                     System.out.print("Masukkan Nama   : ");
                     tempName = userInput.nextLine();
@@ -47,11 +48,15 @@ public class DataPraktikan {
                         break;
                     }
                 }
-                objectList.tambahData(tempNim, tempName);
-                System.out.println("==================================================================================");
-                System.out.println("NIM Praktikan " + tempNim + " dengan asisten " + tempName + " Berhasil ditambahkan");
-                System.out.println("==================================================================================");
 
+                if (objectList.tambahData(tempNim, tempName)){
+                    objectList.dataPraktikan.put(tempNim, tempName);
+                    System.out.println("==================================================================================");
+                    System.out.println("NIM Praktikan " + tempNim + " dengan asisten " + tempName + " Berhasil ditambahkan");
+                    System.out.println("==================================================================================");
+                }else {
+                    System.out.println("Maaf NIM sudah ada");
+                }
             } else if (choice == 2) {
                 objectList.showData();
                 System.out.println();
