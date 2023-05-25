@@ -1,23 +1,23 @@
 package Modul5;
 
-class Node {
+class Nodee {
     int data;
-    Node left;
-    Node right;
+    Nodee left;
+    Nodee right;
 
-    public Node(int data) {
+    public Nodee(int data) {
         this.data = data;
     }
 }
 
 class BinaryTree {
-    public Node root;
+    public Nodee root;
 
     public void NewNode(int data) {
-        root = NewNode(root, new Node(data));
+        root = NewNode(root, new Nodee(data));
     }
 
-    private Node NewNode(Node root, Node newData) {
+    private Nodee NewNode(Nodee root, Nodee newData) {
         if (root == null) {
             root = newData;
             return root;
@@ -30,7 +30,7 @@ class BinaryTree {
         return root;
     }
 
-    public void inOrder(Node node) {
+    public void inOrder(Nodee node) {
         if (node != null) {
 
             inOrder(node.left);
@@ -41,7 +41,7 @@ class BinaryTree {
         }
     }
 
-    public void preOrder(Node node) {
+    public void preOrder(Nodee node) {
         if (node != null) {
 
             System.out.print(node.data + " ");
@@ -50,10 +50,9 @@ class BinaryTree {
 
             preOrder(node.right);
         }
-
     }
 
-    public void postOrder(Node node) {
+    public void postOrder(Nodee node) {
         if (node != null) {
             // Traverse the left subtree
             postOrder(node.left);
