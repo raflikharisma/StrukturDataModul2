@@ -28,17 +28,6 @@ class TreeInventory {
         }
     }
 
-    private int asciiValue(String StuffCode) {
-        int totalAscii = 0;
-
-        for (int i = 0; i < StuffCode.length(); i++) {
-            char ch = StuffCode.charAt(i);
-            totalAscii += ch;
-        }
-
-        return totalAscii;
-    }
-
     private void insertNode(Node currentNode, Node newNode) {
         if (asciiValue(newNode.StuffCode) < asciiValue(currentNode.StuffCode)) {
             if (currentNode.left == null) {
@@ -53,6 +42,18 @@ class TreeInventory {
                 insertNode(currentNode.right, newNode);
             }
         }
+    }
+
+    //ASCII VALUE
+    private int asciiValue(String StuffCode) {
+        int totalAscii = 0;
+
+        for (int i = 0; i < StuffCode.length(); i++) {
+            char ch = StuffCode.charAt(i);
+            totalAscii += ch;
+        }
+
+        return totalAscii;
     }
 
     public void inOrder(Node node) {
@@ -82,6 +83,8 @@ class TreeInventory {
 
 }
 
+/*Example Input Tree = B5, B6, A1, A4, B1, D9, E1*/
+
 public class ModulPractice5 {
     public static void main(String[] args) {
         TreeInventory tree = new TreeInventory();
@@ -99,7 +102,7 @@ public class ModulPractice5 {
                 System.out.print("Masukkan nama barang\t: ");
                 String tempName = inputSystem.nextLine();
                 tree.addData(tempValue, tempName);
-            } else if (opt == 2){
+            } else if (opt == 2) {
                 System.out.println("\nPre order\t: ");
                 tree.preOrder(tree.root);
                 System.out.println("\nIn order\t: ");
@@ -110,8 +113,6 @@ public class ModulPractice5 {
             }
 
         }
-
-
 
 
     }
